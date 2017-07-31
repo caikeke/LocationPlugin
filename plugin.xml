@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-location" version="0.0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>LocationPlugin</name>
+    <js-module name="LocationPlugin" src="www/LocationPlugin.js">
+        <clobbers target="cordova.plugins.LocationPlugin" />
+    </js-module>
+	
+	<platform name="android">  
+        <config-file target="res/xml/config.xml" parent="/*">  
+            <feature name="LocationPlugin">  
+                <param name="android-package" value="com.location.yhck.LocationPlugin"/>  
+            </feature>  
+        </config-file>  
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service android:name="com.location.yhck.LocationSvc" />
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		</config-file>
+		
+		<source-file src="src/android/LocationPlugin.java" target-dir="src/com/location/yhck"/>  
+		<source-file src="src/android/LocationSvc.java" target-dir="src/com/location/yhck"/>  
+  
+    </platform>  
+</plugin>
